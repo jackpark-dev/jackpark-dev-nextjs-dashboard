@@ -7,14 +7,15 @@
     "prettier:check": "prettier --check --ignore-unknown .",
     "start": "next start",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix --ext *.ts,*.tsx,.js,.jsx ."
+    "lint:fix": "eslint --fix --ext *.ts,*.tsx,.js,.jsx .",
+    "seed": "node -r dotenv/config ./scripts/seed.js"
   },
   "dependencies": {
     "@fluentui/react-components": "^9.44.5",
     "@heroicons/react": "^2.0.18",
     "@tailwindcss/forms": "^0.5.7",
     "@types/node": "20.5.7",
-    "@vercel/postgres": "^0.5.0",
+    "@vercel/postgres": "^0.5.1",
     "autoprefixer": "10.4.15",
     "bcrypt": "^5.1.1",
     "clsx": "^2.0.0",
