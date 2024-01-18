@@ -94,5 +94,59 @@ What kind of information can only be known at request time?
 > Cookies and URL search params
 
 
+## Making the dashboard dynamic
 
 
+# Chapter 9. Streaming
+
+## What is streaming?
+
+Streaming is a data transfer technique that allows you to break down a route into smaller "chunks" and progressively stream them from the server to the client as they become ready.
+
+
+There are two ways you implement streaming in Next.js:
+
+At the page level, with the loading.tsx file.
+For specific components, with <Suspense>.
+
+Streaming works well with React's component model, as each component can be considered a chunk.
+
+There are two ways you implement streaming in Next.js:
+
+At the page level, with the loading.tsx file.
+
+1. For specific components, with <Suspense>.
+2. Let's see how this works.
+
+What is one advantage of streaming?
+> Chunks are rendered in parallel, reducing the overall load time
+
+## Streaming a whole page with loading.tsx
+
+In the /app/dashboard folder, create a new file called loading.tsx:
+```javascript
+export default function Loading() {
+  return <div>Loading...</div>;
+}
+```
+
+A few things are happening here:
+1. loading.tsx is a special Next.js file built on top of Suspense, it allows you to create fallback UI to show as a replacement while page content loads.
+
+2. Since <SideNav> is static, it's shown immediately. The user can interact with <SideNav> while the dynamic content is loading.
+
+3. The user doesn't have to wait for the page to finish loading before navigating away (this is called interruptable navigation).
+
+## Adding loading skeletons
+
+* /app/dashboard/loading.tsx
+```javascript
+import DashboardSkeleton from '@/app/ui/skeletons';
+ 
+export default function Loading() {
+  return <DashboardSkeleton />;
+}
+```
+
+
+## Fixing the loading skeleton bug with route groups
