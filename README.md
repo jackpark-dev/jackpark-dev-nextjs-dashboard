@@ -60,10 +60,39 @@ npm run seed
 
 ## What are request waterfalls?
 
-* When might you want to use a waterfall pattern?
-  > To satisfy a condition before making the next request
+When might you want to use a waterfall pattern?
+> To satisfy a condition before making the next request
 
 ## Parallel data fetching
+
+# Chapter 8. Static and Dynamic Rendering
+
+## What is Static Rendering?
+
+With static rendering, data fetching and rendering happens on the server at build time (when you deploy) or during revalidation. The result can then be distributed and cached in a Content Delivery Network (CDN).
+
+* Faster Websites - Prerendered content can be cached and globally distributed. This ensures that users around the world can access your website's content more quickly and reliably.
+
+* Reduced Server Load - Because the content is cached, your server does not have to dynamically generate content for each user request.
+
+* SEO - Prerendered content is easier for search engine crawlers to index, as the content is already available when the page loads. This can lead to improved search engine rankings.
+
+Why might static rendering not be a good fit for a dashboard app?
+> Because the application will not reflect the latest data changes
+
+## What is Dynamic Rendering?
+
+With dynamic rendering, content is rendered on the server for each user at request time (when the user visits the page). There are a couple of benefits of dynamic rendering:
+
+* Real-Time Data - Dynamic rendering allows your application to display real-time or frequently updated data. This is ideal for applications where data changes often.
+
+* User-Specific Content - It's easier to serve personalized content, such as dashboards or user profiles, and update the data based on user interaction.
+
+* Request Time Information - Dynamic rendering allows you to access information that can only be known at request time, such as cookies or the URL search parameters.
+
+What kind of information can only be known at request time?
+> Cookies and URL search params
+
 
 
 
