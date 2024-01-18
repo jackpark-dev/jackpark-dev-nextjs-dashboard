@@ -55,3 +55,15 @@ Populating the database with an initial set of data
 ```bash
 npm run seed
 ```
+
+# Chapter 7. Fetching Data
+
+## What are request waterfalls?
+
+* When might you want to use a waterfall pattern?
+  > To satisfy a condition before making the next request
+
+## Parallel data fetching
+
+
+
