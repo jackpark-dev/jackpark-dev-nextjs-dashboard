@@ -162,5 +162,114 @@ Route groups allow you to organize files into logical groups without affecting t
 
 Here, you're using a route group to ensure `loading.tsx` only applies to your dashboard overview page. However, you can also use route groups to separate your application into sections (e.g. `(marketing)` routes and `(shop)` routes) or by teams for larger applications.
 
+## Streaming a component
+
+So far, you're streaming a whole page. But, instead, you can be more granular and stream specific components using React Suspense.
+
+Suspense allows you to defer rendering parts of your application until some condition is met (e.g. data is loaded). You can wrap your dynamic components in Suspense. Then, pass it a fallback component to show while the dynamic component loads.
+
+If you remember the slow data request, fetchRevenue(), this is the request that is slowing down the whole page. Instead of blocking your page, you can use Suspense to stream only this component and immediately show the rest of the page's UI.
+
+To do so, you'll need to move the data fetch to the component, let's update the code to see what that'll look like:
+
+Delete all instances of fetchRevenue() and its data from /dashboard/(overview)/page.tsx:
+
+* /dashboard/(overview)/page.tsx
+```javascript
+import { Card } from '@/app/ui/dashboard/cards';
+import RevenueChart from '@/app/ui/dashboard/revenue-chart';
+import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
+import { lusitana } from '@/app/ui/fonts';
+import { fetchLatestInvoices, fetchCardData } from '@/app/lib/data'; // remove fetchRevenue
+ 
+export default async function Page() {
+  const revenue = await fetchRevenue // delete this line
+  const latestInvoices = await fetchLatestInvoices();
+  const {
+    numberOfInvoices,
+    numberOfCustomers,
+    totalPaidInvoices,
+    totalPendingInvoices,
+  } = await fetchCardData();
+ 
+  return (
+    // ...
+  );
+}
+```
+
+Then, import <Suspense> from React, and wrap it around <RevenueChart />. You can pass it a fallback component called <RevenueChartSkeleton>.
+
+* /app/dashboard/(overview)/page.tsx
+```javascript
+import { Card } from '@/app/ui/dashboard/cards';
+import RevenueChart from '@/app/ui/dashboard/revenue-chart';
+import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
+import { lusitana } from '@/app/ui/fonts';
+import { fetchLatestInvoices, fetchCardData } from '@/app/lib/data';
+import { Suspense } from 'react';
+import { RevenueChartSkeleton } from '@/app/ui/skeletons';
+ 
+export default async function Page() {
+  const latestInvoices = await fetchLatestInvoices();
+  const {
+    numberOfInvoices,
+    numberOfCustomers,
+    totalPaidInvoices,
+    totalPendingInvoices,
+  } = await fetchCardData();
+ 
+  return (
+    <main>
+      <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
+        Dashboard
+      </h1>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <Card title="Collected" value={totalPaidInvoices} type="collected" />
+        <Card title="Pending" value={totalPendingInvoices} type="pending" />
+        <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
+        <Card
+          title="Total Customers"
+          value={numberOfCustomers}
+          type="customers"
+        />
+      </div>
+      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
+        <Suspense fallback={<RevenueChartSkeleton />}>
+          <RevenueChart />
+        </Suspense>
+        <LatestInvoices latestInvoices={latestInvoices} />
+      </div>
+    </main>
+  );
+}
+
+Finally, update the <RevenueChart> component to fetch its own data and remove the prop passed to it:
+* /app/ui/dashboard/revenue-chart.tsx
+
+```javascript
+import { generateYAxis } from '@/app/lib/utils';
+import { CalendarIcon } from '@heroicons/react/24/outline';
+import { lusitana } from '@/app/ui/fonts';
+import { fetchRevenue } from '@/app/lib/data';
+ 
+// ...
+ 
+export default async function RevenueChart() { // Make component async, remove the props
+  const revenue = await fetchRevenue(); // Fetch data inside the component
+ 
+  const chartHeight = 350;
+  const { yAxisLabels, topLabel } = generateYAxis(revenue);
+ 
+  if (!revenue || revenue.length === 0) {
+    return <p className="mt-4 text-gray-400">No data available.</p>;
+  }
+ 
+  return (
+    // ...
+  );
+}
+ 
+```
 
 
