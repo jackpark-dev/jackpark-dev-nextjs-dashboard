@@ -382,6 +382,18 @@ TODO later
 
 * https://nextjs.org/learn/dashboard-app/mutating-data
 
-* What's one benefit of using a Server Actions?
+What's one benefit of using a Server Actions?
 > Progressive Enhancement.
+
+## Further reading
+
+In this chapter, you learned how to use Server Actions to mutate data. You also learned how to use the revalidatePath API to revalidate the Next.js cache and redirect to redirect the user to a new page.
+
+You can also read more about [security with Server Actions](https://nextjs.org/blog/security-nextjs-server-components-actions) for additional learning.
+
+The first thing we need to do is pick what data handling approach is appropriate for our project.
+
+* [HTTP APIs](https://nextjs.org/blog/security-nextjs-server-components-actions#http-apis) (recommended for existing large projects / orgs)
+* [Data Access Layer] (recommended for new projects)
+* [Component Level Data] Access (recommended for prototyping and learning)
 
