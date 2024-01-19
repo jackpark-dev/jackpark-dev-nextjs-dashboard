@@ -394,6 +394,9 @@ You can also read more about [security with Server Actions](https://nextjs.org/b
 The first thing we need to do is pick what data handling approach is appropriate for our project.
 
 * [HTTP APIs](https://nextjs.org/blog/security-nextjs-server-components-actions#http-apis) (recommended for existing large projects / orgs)
-* [Data Access Layer] (recommended for new projects)
-* [Component Level Data] Access (recommended for prototyping and learning)
+* [Data Access Layer](https://nextjs.org/blog/security-nextjs-server-components-actions#data-access-layer) (recommended for new projects)
+* [Component Level Data](https://nextjs.org/blog/security-nextjs-server-components-actions#component-level-data-access) Access (recommended for prototyping and learning)
 
+# Chapter 13. Handling Errors
+
+https://nextjs.org/learn/dashboard-app/error-handling
