@@ -400,3 +400,38 @@ The first thing we need to do is pick what data handling approach is appropriate
 # Chapter 13. Handling Errors
 
 https://nextjs.org/learn/dashboard-app/error-handling
+
+
+# Chapter 14. Improving Accessibility
+
+Here are the topics we’ll cover
+
+* How to use eslint-plugin-jsx-a11y with Next.js to implement accessibility best practices.
+* How to implement server-side form validation.
+* How to use the React useFormState hook to handle form errors, and display them to the user.
+
+## What is accessibility?
+
+Accessibility refers to designing and implementing web applications that everyone can use, including those with disabilities. It's a vast topic that covers many areas, such as keyboard navigation, semantic HTML, images, colors, videos, etc.
+
+While we won't go in-depth into accessibility in this course, we'll discuss the accessibility features available in Next.js and some common practices to make your applications more accessible.
+
+If you'd like to learn more about accessibility, we recommend the [Learn Accessibility](https://web.dev/learn/accessibility/) course by [web.dev](https://web.dev/).
+
+## Using the ESLint accessibility plugin in Next.js
+By default, Next.js includes the [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y) plugin to help catch accessibility issues early. For example, this plugin warns if you have images without `alt` text, use the `aria-*` and `role` attributes incorrectly, and more.
+
+Add next lint as a script in your package.json file:
+```json
+...
+    "lint": "next lint"
+},
+```
+
+## Improving form accessibility
+
+There are three things we're already doing to improve accessibility in our forms:
+
+* Semantic HTML: Using semantic elements (<input>, <option>, etc) instead of <div>. This allows assistive technologies (AT) to focus on the input elements and provide appropriate contextual information to the user, making the form easier to navigate and understand.
+* Labelling: Including <label> and the htmlFor attribute ensures that each form field has a descriptive text label. This improves AT support by providing context and also enhances usability by allowing users to click on the label to focus on the corresponding input field.
+* Focus Outline: The fields are properly styled to show an outline when they are in focus. This is critical for accessibility as it visually indicates the active element on the page, helping both keyboard and screen reader users to understand where they are on the form. You can verify this by pressing tab.

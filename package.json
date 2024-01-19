@@ -6,9 +6,11 @@
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
     "start": "next start",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix --ext *.ts,*.tsx,.js,.jsx .",
-    "seed": "node -r dotenv/config ./scripts/seed.js"
+    "eslint": "eslint .",
+    "eslint:fix": "eslint --fix --ext *.ts,*.tsx,.js,.jsx .",
+    "seed": "node -r dotenv/config ./scripts/seed.js",
+    "lint": "next lint"
+
   },
   "dependencies": {
     "@fluentui/react-components": "^9.44.5",
