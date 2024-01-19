@@ -243,10 +243,10 @@ export default async function Page() {
     </main>
   );
 }
-
+```
 Finally, update the <RevenueChart> component to fetch its own data and remove the prop passed to it:
-* /app/ui/dashboard/revenue-chart.tsx
 
+* /app/ui/dashboard/revenue-chart.tsx
 ```javascript
 import { generateYAxis } from '@/app/lib/utils';
 import { CalendarIcon } from '@heroicons/react/24/outline';
@@ -271,5 +271,83 @@ export default async function RevenueChart() { // Make component async, remove t
 }
  
 ```
+Now refresh the page, you should see the dashboard information almost immediately, while a fallback skeleton is shown for <RevenueChart>:
 
+## Practice: Streaming <LatestInvoices>
+
+## Grouping components
+
+Great! You're almost there, now you need to wrap the <Card> components in Suspense. You can fetch data for each individual card, but this could lead to a popping effect as the cards load in, this can be visually jarring for the user.
+
+So, how would you tackle this problem?
+
+To create more of a staggered effect, you can group the cards using a wrapper component. This means the static <SideNav/> will be shown first, followed by the cards, etc.
+
+In your page.tsx file:
+
+1. Delete your <Card> components.
+2. Delete the fetchCardData() function.
+3. Import a new wrapper component called <CardWrapper />.
+4. Import a new skeleton component called <CardsSkeleton />.
+5. Wrap <CardWrapper /> in Suspense.
+
+* /app/dashboard/page.tsx
+
+```javascript
+import CardWrapper from '@/app/ui/dashboard/cards';
+// ...
+import {
+  RevenueChartSkeleton,
+  LatestInvoicesSkeleton,
+  CardsSkeleton,
+} from '@/app/ui/skeletons';
+ 
+export default async function Page() {
+  return (
+    <main>
+      <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
+        Dashboard
+      </h1>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <Suspense fallback={<CardsSkeleton />}>
+          <CardWrapper />
+        </Suspense>
+      </div>
+      // ...
+    </main>
+  );
+}
+```
+
+Then, move into the file /app/ui/dashboard/cards.tsx, import the fetchCardData() function, and invoke it inside the <CardWrapper/> component. Make sure to uncomment any necessary code in this component.
+
+* /app/ui/dashboard/cards.tsx
+```javascript
+// ...
+import { fetchCardData } from '@/app/lib/data';
+ 
+// ...
+ 
+export default async function CardWrapper() {
+  const {
+    numberOfInvoices,
+    numberOfCustomers,
+    totalPaidInvoices,
+    totalPendingInvoices,
+  } = await fetchCardData();
+ 
+  return (
+    <>
+      <Card title="Collected" value={totalPaidInvoices} type="collected" />
+      <Card title="Pending" value={totalPendingInvoices} type="pending" />
+      <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
+      <Card
+        title="Total Customers"
+        value={numberOfCustomers}
+        type="customers"
+      />
+    </>
+  );
+}
+```
 
