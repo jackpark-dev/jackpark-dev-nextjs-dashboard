@@ -100,7 +100,7 @@ export async function fetchFilteredInvoices(
   currentPage: number,
 ) {
   noStore();
-  
+
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
@@ -175,6 +175,7 @@ export async function fetchInvoiceById(id: string) {
       amount: invoice.amount / 100,
     }));
 
+    console.log('TCL: fetchInvoiceById -> invoice', invoice);
     return invoice[0];
   } catch (error) {
     console.error('Database Error:', error);
