@@ -385,4 +385,3 @@ TODO later
 * What's one benefit of using a Server Actions?
 > Progressive Enhancement.
 
-Correct
