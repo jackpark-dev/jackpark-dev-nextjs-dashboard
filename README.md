@@ -370,3 +370,10 @@ Don't be afraid to experiment with Suspense and see what works best, it's a powe
 * In general, what is considered good practice when working with Suspense and data fetching?
 > Move data fetches down to the components that need it
 
+# Chapter 10. Partial Prerendering (Optional)
+
+TODO later
+
+# Chapter 11. Adding Search and Pagination
+
+* https://nextjs.org/learn/dashboard-app/adding-search-and-pagination
