@@ -377,3 +377,12 @@ TODO later
 # Chapter 11. Adding Search and Pagination
 
 * https://nextjs.org/learn/dashboard-app/adding-search-and-pagination
+
+# Chapter 12. Mutating Data
+
+* https://nextjs.org/learn/dashboard-app/mutating-data
+
+* What's one benefit of using a Server Actions?
+> Progressive Enhancement.
+
+Correct
