@@ -448,3 +448,6 @@ Email: user@nextmail.com
 Password: 123456
 ```
 
+# Chapter 16. Adding Metadata
+
+https://nextjs.org/learn/dashboard-app/adding-metadata
