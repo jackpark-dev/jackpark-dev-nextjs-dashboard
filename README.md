@@ -437,3 +437,14 @@ There are three things we're already doing to improve accessibility in our forms
 * Focus Outline: The fields are properly styled to show an outline when they are in focus. This is critical for accessibility as it visually indicates the active element on the page, helping both keyboard and screen reader users to understand where they are on the form. You can verify this by pressing tab.
 
 ## Form validation
+
+# Chapter 15. Adding Authentication
+
+https://nextjs.org/learn/dashboard-app/adding-authentication
+
+* Account
+```
+Email: user@nextmail.com
+Password: 123456
+```
+
