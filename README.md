@@ -103,20 +103,11 @@ What kind of information can only be known at request time?
 
 Streaming is a data transfer technique that allows you to break down a route into smaller "chunks" and progressively stream them from the server to the client as they become ready.
 
-
-There are two ways you implement streaming in Next.js:
-
-At the page level, with the loading.tsx file.
-For specific components, with <Suspense>.
-
 Streaming works well with React's component model, as each component can be considered a chunk.
 
 There are two ways you implement streaming in Next.js:
-
-At the page level, with the loading.tsx file.
-
-1. For specific components, with <Suspense>.
-2. Let's see how this works.
+1. At the page level, with the loading.tsx file.
+2. For specific components, with <Suspense>.
 
 What is one advantage of streaming?
 > Chunks are rendered in parallel, reducing the overall load time
